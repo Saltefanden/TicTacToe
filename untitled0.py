@@ -18,6 +18,8 @@ class Counter:
 
 
 class Move:
+    """Represents move made by a player, depends on the x and y coordinate and
+    the counter of the player passed to it"""
     def __init__(self, counter, x, y):
         self.x = x
         self.y = y
@@ -25,6 +27,7 @@ class Move:
 
 
 class Player(metaclass=ABCMeta):
+    
     def __init__(self,board):
         self.board = board
         self._counter = None
