@@ -10,6 +10,8 @@ import random
 
 
 class Counter:
+    """Does not seem to do anything much? inits with a string and returns that 
+    string at the __str__ method"""
     def __init__(self, string):
         self.label = string
 
@@ -18,8 +20,8 @@ class Counter:
 
 
 class Move:
-    """Represents move made by a player, depends on the x and y coordinate and
-    the counter of the player passed to it"""
+    """Represents move made by a player, contains the x and y coordinate and
+    the counter passed to it"""
     def __init__(self, counter, x, y):
         self.x = x
         self.y = y
@@ -27,7 +29,8 @@ class Move:
 
 
 class Player(metaclass=ABCMeta):
-    
+    """Metaclass for players. Initialises with the board? has a counter property
+    that can be set and a move method that is abstract at the metaclass level"""
     def __init__(self,board):
         self.board = board
         self._counter = None
@@ -51,6 +54,11 @@ class Player(metaclass=ABCMeta):
 
 
 class HumanPlayer(Player):
+    """Initialises as the Player class with the board. Has the private get user input 
+    method that gets a number from the user. Furthermore a get_move method
+    that assigns row and column numbers using the user input method and returns 
+    a move object with the players counter as well as the row and col num. 
+    """
     def __init__(self,board):
         super().__init__(board)
 
@@ -107,6 +115,9 @@ class ComputerPlayer(Player):
             return self.randomly_select_cell()
 
 class Board:
+    """Board initialiserer med en liste af lister der er boarded. Ydermere en 
+    __str__ metode der printer boardet. Tilføj move, tjek om tom celle, 
+    tjek om celle indeholder counter, tjek om board fuldt, tjek for winner"""
     def __init__(self):
         self.cells = [['   ','   ','   '],['   ','   ','   '],['   ','   ','   ']]
         self.sep = '\n' + ('-'*13) + '\n'
@@ -236,8 +247,6 @@ class Game:
 
 
 def main():
-    #x = Counter('X')
-    #o = Counter('O')
     game = Game()
     game.play()
 
